@@ -1,0 +1,9 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/NutriPlan.Core/NutriPlan.Core.csproj" />
+    <Project Path="src/NutriPlan.Web/NutriPlan.Web.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/NutriPlan.Tests/NutriPlan.Tests.csproj" />
+  </Folder>
+</Solution>
