@@ -1,0 +1,81 @@
+@page "/alimentos"
+@model FoodsModel
+@{
+    ViewData["Title"] = "Alimentos";
+}
+
+<section class="page-head">
+    <div>
+        <p class="eyebrow">Base local (TACO) + Open Food Facts</p>
+        <h1>Consulta de alimentos</h1>
+    </div>
+</section>
+
+<form method="get" class="card search">
+    <label>Buscar por nome
+        <input asp-for="Q" placeholder="Ex.: arroz, banana, frango" />
+    </label>
+    <button class="btn" type="submit">Buscar</button>
+</form>
+
+@if (Model.Error is not null)
+{
+    <div class="alert alert-error">@Model.Error</div>
+}
+
+<section>
+    <h2>Base local <span class="muted">(@Model.LocalFoods.Count)</span></h2>
+    @if (Model.LocalFoods.Count == 0)
+    {
+        <p class="muted">Nenhum alimento encontrado na base local.</p>
+    }
+    else
+    {
+        <div class="card table-wrap">
+            <table class="table">
+                <thead><tr><th>Alimento</th><th>Grupo</th><th>Porção</th><th>kcal/porção</th><th>kcal/100 g</th></tr></thead>
+                <tbody>
+                    @foreach (var food in Model.LocalFoods)
+                    {
+                        <tr>
+                            <td>@food.Name</td>
+                            <td>@UiText.Label(food.Role)</td>
+                            <td>@UiText.Number(food.PortionGrams) g</td>
+                            <td>@UiText.Number(food.KcalPerPortion)</td>
+                            <td>@UiText.Number(food.KcalPer100g)</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+</section>
+
+@if (Model.External is not null)
+{
+    <section>
+        <h2>Open Food Facts</h2>
+        @if (!Model.External.Succeeded)
+        {
+            <div class="alert alert-info">@Model.External.Error A base local continua disponível.</div>
+        }
+        else if (Model.External.Foods.Count == 0)
+        {
+            <p class="muted">Nenhum produto com calorias encontrado.</p>
+        }
+        else
+        {
+            <div class="card table-wrap">
+                <table class="table">
+                    <thead><tr><th>Produto</th><th>kcal/100 g</th></tr></thead>
+                    <tbody>
+                        @foreach (var food in Model.External.Foods)
+                        {
+                            <tr><td>@food.Name</td><td>@UiText.Number(food.KcalPer100g)</td></tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+    </section>
+}

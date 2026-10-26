@@ -1,0 +1,64 @@
+@page "/sobre"
+@model AboutModel
+@{
+    ViewData["Title"] = "Sobre";
+}
+
+<section class="page-head">
+    <div>
+        <p class="eyebrow">@Model.Team.Course</p>
+        <h1>Sobre o NutriPlan</h1>
+    </div>
+</section>
+
+<div class="about-grid">
+    <article class="card">
+        <h2>Problema</h2>
+        <p>
+            Excesso de peso e baixo peso são problemas de saúde comuns, e quem decide mudar o corpo costuma não saber
+            quantas calorias gasta por dia, como montar uma dieta que respeite essa meta e como manter a motivação.
+            Dietas genéricas da internet ignoram o perfil da pessoa.
+        </p>
+        <h2>ODS</h2>
+        <p><strong>ODS 3 – Saúde e Bem-Estar:</strong> promove hábitos alimentares saudáveis e prevenção de doenças ligadas à obesidade e à má alimentação.</p>
+        <p><strong>ODS 2 – Fome Zero (secundária):</strong> usa alimentos comuns do dia a dia e uma tabela nutricional brasileira.</p>
+    </article>
+
+    <article class="card">
+        <h2>Fórmulas</h2>
+        <ul class="formulas">
+            <li><strong>IMC</strong> = peso ÷ altura²</li>
+            <li><strong>TMB (homens)</strong> = 10×peso + 6,25×altura − 5×idade + 5</li>
+            <li><strong>TMB (mulheres)</strong> = 10×peso + 6,25×altura − 5×idade − 161</li>
+            <li><strong>Gasto diário</strong> = TMB × fator de atividade (1,2 a 1,9)</li>
+            <li><strong>Meta</strong> = gasto − 500 (emagrecer), + 500 (ganhar) ou igual (manter)</li>
+            <li><strong>Combinações</strong> C(n, k) = n! ÷ (k! × (n − k)!)</li>
+        </ul>
+        <p class="muted">Pisos de segurança: 1.500 kcal (homens) e 1.200 kcal (mulheres). Meta semanal de peso de 0,1 a 1 kg.</p>
+    </article>
+
+    <article class="card">
+        <h2>Equipe</h2>
+        <table class="table">
+            <thead><tr><th>Nome</th><th>RA</th></tr></thead>
+            <tbody>
+                @foreach (var member in Model.Team.Members)
+                {
+                    <tr><td>@member.Name</td><td>@member.Ra</td></tr>
+                }
+            </tbody>
+        </table>
+        <p class="muted">Professor: @Model.Team.Professor</p>
+    </article>
+
+    <article class="card">
+        <h2>Boas práticas aplicadas</h2>
+        <ul>
+            <li>GitFlow (main, develop, feature/*) e commits semânticos</li>
+            <li>Testes unitários escritos com TDD (xUnit)</li>
+            <li>Integração contínua com GitHub Actions</li>
+            <li>Código limpo, validação de entradas e tratamento de erros</li>
+            <li>Banco SQLite e API externa Open Food Facts</li>
+        </ul>
+    </article>
+</div>
