@@ -1,0 +1,103 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Planejador de dieta";
+}
+
+<section class="hero">
+    <div>
+        <p class="eyebrow">Saúde e bem-estar · ODS 3</p>
+        <h1>Sua meta de calorias e um cardápio de 7 dias, feitos para o seu corpo.</h1>
+        <p class="lead">
+            Informe peso, altura, idade e objetivo. O NutriPlan calcula IMC, taxa metabólica e gasto diário,
+            define sua meta de calorias e monta um cardápio semanal variado com análise combinatória.
+        </p>
+        <ul class="ticks">
+            <li>Déficit para emagrecer, superávit para ganhar peso</li>
+            <li>4 refeições por dia, sem repetir o prato do dia anterior</li>
+            <li>Metas semanais, conquistas e ajuste automático do plano</li>
+        </ul>
+    </div>
+
+    <form method="post" class="card form-card" novalidate>
+        <h2>Seu perfil</h2>
+
+        @if (Model.Notice is not null)
+        {
+            <div class="alert alert-error">@Model.Notice</div>
+        }
+
+        @if (Model.Errors.Count > 0)
+        {
+            <div class="alert alert-error" role="alert">
+                <ul>
+                    @foreach (var error in Model.Errors)
+                    {
+                        <li>@error</li>
+                    }
+                </ul>
+            </div>
+        }
+
+        <label>Nome
+            <input asp-for="Input.Name" autocomplete="name" placeholder="Como devemos te chamar?" />
+        </label>
+
+        <div class="grid-2">
+            <label>Sexo
+                <select asp-for="Input.Sex">
+                    <option value="@Sex.Male">@UiText.Label(Sex.Male)</option>
+                    <option value="@Sex.Female">@UiText.Label(Sex.Female)</option>
+                </select>
+            </label>
+            <label>Idade (anos)
+                <input asp-for="Input.Age" type="number" min="18" max="100" step="1" />
+            </label>
+        </div>
+
+        <div class="grid-2">
+            <label>Peso (kg)
+                <input asp-for="Input.WeightKg" type="number" min="30" max="400" step="0.1" />
+            </label>
+            <label>Altura (cm)
+                <input asp-for="Input.HeightCm" type="number" min="100" max="250" step="1" />
+            </label>
+        </div>
+
+        <label>Nível de atividade física
+            <select asp-for="Input.Activity">
+                @foreach (var level in Enum.GetValues<ActivityLevel>())
+                {
+                    <option value="@level">@UiText.Label(level)</option>
+                }
+            </select>
+        </label>
+
+        <div class="grid-2">
+            <label>Objetivo
+                <select asp-for="Input.Goal">
+                    @foreach (var goal in Enum.GetValues<Goal>())
+                    {
+                        <option value="@goal">@UiText.Label(goal)</option>
+                    }
+                </select>
+            </label>
+            <label>Meta semanal (kg)
+                <input asp-for="Input.WeeklyGoalKg" type="number" min="0.1" max="1" step="0.1" />
+            </label>
+        </div>
+
+        <div class="actions">
+            <button type="submit" class="btn">Gerar meu plano</button>
+            <a class="btn btn-ghost" asp-page="/Index" asp-route-example="true">Preencher exemplo</a>
+        </div>
+        <p class="hint">Somente maiores de 18 anos. Por segurança, o plano nunca fica abaixo de 1.500 kcal (homens) ou 1.200 kcal (mulheres).</p>
+    </form>
+</section>
+
+<section class="steps">
+    <article class="card"><span class="step-n">1</span><h3>Dados</h3><p>Formulário com perfil e objetivo.</p></article>
+    <article class="card"><span class="step-n">2</span><h3>Cálculos</h3><p>IMC, TMB (Mifflin-St Jeor), gasto diário e meta.</p></article>
+    <article class="card"><span class="step-n">3</span><h3>Cardápio</h3><p>Combinações de alimentos para cada refeição.</p></article>
+    <article class="card"><span class="step-n">4</span><h3>Acompanhamento</h3><p>Peso semanal, metas e emblemas.</p></article>
+</section>
