@@ -7,13 +7,14 @@ Trabalho A3 – Garantia da Qualidade de Software (GQS) · Prof. Daniel Henrique
 
 ## Equipe
 
-| Nome | GitHub | RA |
-|------|--------|----|
-| Claudio Camilo Junio | [@claudio3009](https://github.com/claudio3009) | [preencher RA] |
-| Matheus Moreira Lopes | [@mmoreiralopes8-sketch](https://github.com/mmoreiralopes8-sketch) | [preencher RA] |
-| Gabriel Ribeiro de Oliveira | [@gabrielrrbeiro-byte](https://github.com/gabrielrrbeiro-byte) | [preencher RA] |
-| Luiz Felipe Chaves Vaz | [@LuizFvazz](https://github.com/LuizFvazz) | [preencher RA] |
-| Claudio Camylo | [@ClaudioCamylo](https://github.com/ClaudioCamylo) | [preencher RA] |
+| Nome | RA |
+|------|----|
+| Arthur Felipe Pereira dos Santos | 325131390 |
+| Matheus Moreira Lopes | 325128108 |
+| Gabriel Ribeiro de Oliveira | 325127609 |
+| Claudio Camilo Junior | 325131687 |
+| Luiz Felipe Chaves Vaz | 326215812 |
+| Claudio Camilo | 325131832 |
 
 Os nomes e RAs exibidos no site ficam em `src/NutriPlan.Web/appsettings.json` (seção `Team`).
 
