@@ -168,8 +168,21 @@ input:focus, select:focus, .btn:focus-visible { outline: 2px solid var(--green);
 .badges { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
 .badge { display: grid; padding: 10px 14px; border-radius: 10px; background: var(--amber-soft); border: 1px solid var(--line); }
 
-.search { display: flex; gap: 12px; align-items: end; margin-bottom: 20px; }
-.search label { flex: 1; }
+.search { display: grid; gap: 8px; margin-bottom: 20px; }
+.food-search-controls { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+.food-search-controls input { flex: 1 1 14rem; min-width: 0; border-color: var(--muted); }
+.food-results-title { overflow-wrap: anywhere; }
+.food-results-title:focus, .food-table:focus { outline: 2px solid var(--green); outline-offset: 2px; }
+.food-external { margin-top: 24px; }
+.food-table caption { padding: 12px 14px; text-align: left; font-weight: 600; }
+.food-table th[scope="row"] { color: inherit; font-size: inherit; text-transform: none; overflow-wrap: anywhere; }
+.food-table .food-number { text-align: right; white-space: nowrap; }
+.food-table-local .table { min-width: 32rem; }
+.food-table-hint { display: none; }
+
+@media (prefers-color-scheme: dark) {
+    .food-search-controls button.btn { color: var(--bg); }
+}
 
 .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 .formulas { padding-left: 18px; }
@@ -178,6 +191,10 @@ input:focus, select:focus, .btn:focus-visible { outline: 2px solid var(--green);
     .hero, .about-grid { grid-template-columns: 1fr; }
     .progress { grid-template-columns: minmax(0, 1fr); }
     .stats, .steps { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 570px) {
+    .food-table-hint { display: block; margin-bottom: 8px; }
 }
 
 @media (max-width: 520px) {
