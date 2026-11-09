@@ -184,8 +184,20 @@ input:focus, select:focus, .btn:focus-visible { outline: 2px solid var(--green);
     .food-search-controls button.btn { color: var(--bg); }
 }
 
-.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.about-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.about-page a:not(.btn) { color: var(--green-dark); }
+.about-method { list-style: none; margin: 0; padding: 0; }
+.about-page h3 { margin-bottom: 8px; }
+.about-page .card p:last-child { margin-bottom: 0; }
+.about-team { overflow-wrap: anywhere; }
+.about-team caption { padding: 4px 8px; text-align: left; font-weight: 600; }
+.about-team .table th, .about-team .table td { padding-inline: 8px; }
+.about-team th[scope="row"] { color: inherit; font-size: inherit; text-transform: none; }
 .formulas { padding-left: 18px; }
+
+@media (prefers-color-scheme: dark) {
+    .about-actions .btn:not(.btn-ghost) { color: var(--bg); }
+}
 
 @media (max-width: 860px) {
     .hero, .about-grid { grid-template-columns: 1fr; }
