@@ -50,13 +50,47 @@ p { margin: 0 0 12px; }
 .lead { font-size: 1.1rem; color: var(--muted); }
 .eyebrow { color: var(--green); font-weight: 600; font-size: 0.85rem; letter-spacing: 0.04em; text-transform: uppercase; margin-bottom: 6px; }
 
+.skip-link {
+    position: absolute;
+    z-index: 1;
+    inset-block-start: 8px;
+    inset-inline-start: 8px;
+    max-inline-size: calc(100% - 16px);
+    padding: 8px 12px;
+    border-radius: 8px;
+    background: var(--surface);
+    color: var(--green-dark);
+    font-weight: 600;
+}
+.skip-link:not(:focus) { clip-path: inset(50%); }
+.skip-link:focus, .site-header a:focus-visible { outline: 2px solid var(--green-dark); outline-offset: 2px; }
+#conteudo-principal:focus { outline: 2px solid var(--green-dark); outline-offset: -2px; }
+
 .site-header { background: var(--surface); border-bottom: 1px solid var(--line); }
-.header-inner { display: flex; align-items: center; justify-content: space-between; height: 62px; }
+.header-inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 4px 24px;
+    min-height: 62px;
+    padding-block: 8px;
+}
 .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 1.2rem; color: var(--ink); text-decoration: none; }
 .brand-mark { display: grid; place-items: center; width: 32px; height: 32px; border-radius: 9px; background: var(--green); color: #fff; font-weight: 800; }
-.nav { display: flex; gap: 20px; }
-.nav a { color: var(--muted); text-decoration: none; font-weight: 500; }
-.nav a:hover { color: var(--green); }
+.nav { max-inline-size: 100%; }
+.nav ul { display: flex; flex-wrap: wrap; gap: 0 20px; list-style: none; margin: 0; padding: 0; }
+.nav a { display: block; padding-block: 8px; color: var(--muted); text-decoration: none; font-weight: 500; }
+.nav a:hover, .nav a[aria-current="page"] {
+    color: var(--green-dark);
+    text-decoration: underline;
+    text-underline-offset: 0.24em;
+}
+.nav a[aria-current="page"] { font-weight: 700; }
+
+@media (prefers-color-scheme: dark) {
+    .brand-mark { color: var(--bg); }
+}
 
 .site-footer { border-top: 1px solid var(--line); padding: 22px 0; text-align: center; }
 .site-footer p { margin: 2px 0; font-size: 0.9rem; }
@@ -211,5 +245,6 @@ input:focus, select:focus, .btn:focus-visible { outline: 2px solid var(--green);
 
 @media (max-width: 520px) {
     .stats, .steps, .grid-2 { grid-template-columns: 1fr; }
-    .nav { gap: 12px; }
+    .nav { flex-basis: 100%; }
+    .nav ul { column-gap: 16px; }
 }
