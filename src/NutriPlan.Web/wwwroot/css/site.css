@@ -119,26 +119,45 @@ input:focus, select:focus, .btn:focus-visible { outline: 2px solid var(--green);
 .step-n { display: inline-grid; place-items: center; width: 28px; height: 28px; margin-bottom: 8px; border-radius: 50%; background: var(--green-soft); color: var(--green-dark); font-weight: 700; }
 
 .page-head { display: flex; justify-content: space-between; align-items: end; gap: 16px; flex-wrap: wrap; margin-bottom: 8px; }
+.plan-heading h1 { overflow-wrap: anywhere; }
+.plan-links { display: flex; flex-wrap: wrap; gap: 4px 16px; margin-bottom: 12px; }
+.plan-links a { color: var(--green-dark); padding-block: 2px; }
+.plan-jump-target:focus, .weight-history:focus { outline: 2px solid var(--green); outline-offset: 2px; }
+.plan-feedback:focus { outline: 2px solid currentColor; outline-offset: 2px; }
+
 .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin: 12px 0 8px; }
 .stat { display: grid; gap: 2px; }
+.stat dd { display: grid; gap: 4px; margin: 0; }
 .stat strong { font-size: 1.9rem; line-height: 1.1; }
+.stat-unit { font-size: 0.85rem; }
 .stat-label { color: var(--muted); font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; }
 .stat-note { color: var(--muted); font-size: 0.85rem; }
 .stat-main { background: var(--green); border-color: var(--green); color: #fff; }
-.stat-main .stat-label, .stat-main .stat-note { color: rgba(255, 255, 255, 0.85); }
+.stat-main .stat-label, .stat-main .stat-note { color: inherit; }
 
-.days { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; }
-.day header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+.days { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap: 16px; }
+.day header { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 6px; margin-bottom: 10px; }
 .pill { background: var(--green-soft); color: var(--green-dark); padding: 3px 10px; border-radius: 999px; font-size: 0.85rem; font-weight: 600; }
 .meal { padding: 10px 0; border-top: 1px solid var(--line); }
-.meal-head { display: flex; justify-content: space-between; }
+.meal-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 2px 12px; }
+.meal-head h4 { margin: 0; font-size: 0.95rem; }
 .meal ul { list-style: none; margin: 6px 0 0; padding: 0; }
-.meal li { display: flex; justify-content: space-between; gap: 12px; font-size: 0.92rem; }
+.meal li { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 2px 12px; font-size: 0.92rem; }
 .meal li .muted { white-space: nowrap; font-size: 0.82rem; }
 
-.progress { display: grid; grid-template-columns: 1.3fr 1fr; gap: 16px; margin-top: 28px; align-items: start; }
-.inline-form { display: flex; gap: 12px; align-items: end; margin: 12px 0; }
-.inline-form label { flex: 1; }
+.progress { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 16px; align-items: start; }
+.inline-form { display: flex; flex-wrap: wrap; gap: 12px; align-items: end; margin: 12px 0 4px; }
+.weight-field { flex: 1 1 10rem; min-width: 0; }
+.weight-field label { margin-bottom: 5px; }
+.weight-field input { border-color: var(--muted); }
+.weight-history { margin-top: 16px; }
+.weight-history caption { padding-bottom: 4px; text-align: left; font-weight: 600; }
+.weight-history td:nth-child(2), .weight-history td:nth-child(3) { white-space: nowrap; }
+.weight-history th[scope="row"] { color: inherit; font-size: inherit; }
+
+@media (prefers-color-scheme: dark) {
+    .stat-main, .progress .btn { color: var(--bg); }
+}
 
 .table-wrap { padding: 0; overflow-x: auto; }
 .table { width: 100%; border-collapse: collapse; font-size: 0.94rem; }
@@ -156,7 +175,8 @@ input:focus, select:focus, .btn:focus-visible { outline: 2px solid var(--green);
 .formulas { padding-left: 18px; }
 
 @media (max-width: 860px) {
-    .hero, .progress, .about-grid { grid-template-columns: 1fr; }
+    .hero, .about-grid { grid-template-columns: 1fr; }
+    .progress { grid-template-columns: minmax(0, 1fr); }
     .stats, .steps { grid-template-columns: 1fr 1fr; }
 }
 
